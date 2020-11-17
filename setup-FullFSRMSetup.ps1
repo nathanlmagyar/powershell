@@ -76,7 +76,7 @@ Set-FsrmSetting -CommandNotificationLimit $notificationLimit -EventNotificationL
 New-FsrmFileGroup -Name $fileGroup -IncludePattern @("*.*")
 
 # Create FSRM Action Objects 
-$commandAction = New-FsrmAction -Type Command -Command "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -CommandParameters "-Command & {C:\Script\kickuser.ps1 -username ‘[Source Io Owner]’}"
+$commandAction = New-FsrmAction -Type Command -Command "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -CommandParameters "-Command & {C:\Script\block-smbshareaccess.ps1 -username ‘[Source Io Owner]’}"
 $eventLogAction = New-FsrmAction -Type Event -EventType Warning -Body "WARNING! User [Source Io Owner] attempted to save [Source File Path] to [File Screen Path] on the [Server] server. This file is in the [Violated File Group] file group, which is not permitted on the server."
 
 # Create FSRM File Screen Template
